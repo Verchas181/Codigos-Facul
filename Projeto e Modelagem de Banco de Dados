@@ -1,0 +1,114 @@
+CREATE TABLE Ala 
+( 
+ Tipo INT,  
+ Nome INT,  
+); 
+
+CREATE TABLE Pessoa 
+( 
+ Nome INT,  
+ Telefone INT,  
+ Gênero INT,  
+ Data nascimento INT,  
+ CPF INT PRIMARY KEY,  
+ Endereço INT,  
+); 
+
+CREATE TABLE Paciente 
+( 
+ ID INT PRIMARY KEY,  
+ Numero Carteirinha SUS INT,  
+); 
+
+CREATE TABLE Funcionário 
+( 
+ Data contratação INT,  
+); 
+
+CREATE TABLE Médico 
+( 
+ Especialidade INT,  
+ CRM INT PRIMARY KEY,  
+); 
+
+CREATE TABLE Enfermeiro 
+( 
+); 
+
+CREATE TABLE Técnico 
+( 
+ Função INT,  
+); 
+
+CREATE TABLE Consulta 
+( 
+ Tipo diagnóstico INT,  
+ Descrição diagnóstico INT,  
+ Data atendimento INT,  
+ Horário atendimento INT,  
+ Sala INT,  
+); 
+
+CREATE TABLE Exame 
+( 
+ Tipo resultado INT,  
+ Tipo de exame INT,  
+ Descrição diagnóstico INT,  
+ Data atendimento INT,  
+ Descritivo resultado INT,  
+ Resultado INT,  
+ Horário atendimento INT,  
+); 
+
+CREATE TABLE Laboratório 
+( 
+ Nome INT,  
+ Telefone INT,  
+ Endereço INT,  
+ Exames cobertos INT,  
+ Data Expiração Contrato INT,  
+ Valor cobrado INT,  
+); 
+
+CREATE TABLE Internação 
+( 
+ Motivo INT,  
+ Exame.Resultado INT,  
+ Leito.Sala INT,  
+ Solicitação INT,  
+); 
+
+CREATE TABLE Cirurgia 
+( 
+ Sala INT,  
+ Especialidade INT,  
+ Andar INT,  
+); 
+
+CREATE TABLE Leito 
+( 
+ Andar INT,  
+ ID Leito INT PRIMARY KEY,  
+ Sala INT,  
+); 
+
+CREATE TABLE Holding CARE 
+( 
+); 
+
+CREATE TABLE Hospital 
+( 
+); 
+
+CREATE TABLE Primeira consulta 
+( 
+); 
+
+CREATE TABLE Retorno 
+( 
+); 
+
+CREATE TABLE Funcionário1 
+( 
+); 
+
