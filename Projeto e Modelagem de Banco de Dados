@@ -1,114 +1,105 @@
 CREATE TABLE Ala 
 ( 
- Tipo INT,  
- Nome INT,  
-); 
+  Tipo VARCHAR(10),  
+  Nome VARCHAR(50)
+);
 
 CREATE TABLE Pessoa 
 ( 
- Nome INT,  
- Telefone INT,  
- Gênero INT,  
- Data nascimento INT,  
- CPF INT PRIMARY KEY,  
- Endereço INT,  
-); 
+  Nome VARCHAR(50),  
+  Telefone INT,  
+  Genero VARCHAR(10),  
+  Data_Nascimento DATE,  
+  CPF INT PRIMARY KEY,  
+  Endereco VARCHAR(100)
+);
 
 CREATE TABLE Paciente 
 ( 
- ID INT PRIMARY KEY,  
- Numero Carteirinha SUS INT,  
-); 
+  ID INT PRIMARY KEY,  
+  Numero_Carteirinha_SUS INT
+);
 
-CREATE TABLE Funcionário 
+CREATE TABLE Funcionario 
 ( 
- Data contratação INT,  
-); 
+  Data_Contratacao DATE
+);
 
-CREATE TABLE Médico 
+CREATE TABLE Medico 
 ( 
- Especialidade INT,  
- CRM INT PRIMARY KEY,  
-); 
+  Especialidade VARCHAR(50),  
+  CRM INT PRIMARY KEY
+);
 
 CREATE TABLE Enfermeiro 
 ( 
-); 
+);
 
-CREATE TABLE Técnico 
+CREATE TABLE Tecnico 
 ( 
- Função INT,  
-); 
+  Funcao VARCHAR(15)
+);
 
 CREATE TABLE Consulta 
 ( 
- Tipo diagnóstico INT,  
- Descrição diagnóstico INT,  
- Data atendimento INT,  
- Horário atendimento INT,  
- Sala INT,  
-); 
+  Tipo_Diagnostico VARCHAR(50),  
+  Descricao_Diagnostico VARCHAR(255),  
+  Data_Atendimento DATE,  
+  Horario_Atendimento TIME,  
+  Sala INT
+);
 
 CREATE TABLE Exame 
 ( 
- Tipo resultado INT,  
- Tipo de exame INT,  
- Descrição diagnóstico INT,  
- Data atendimento INT,  
- Descritivo resultado INT,  
- Resultado INT,  
- Horário atendimento INT,  
-); 
+  Tipo_Resultado VARCHAR(50),  
+  Tipo_Exame VARCHAR(50),  
+  Descricao_Diagnostico VARCHAR(255),  
+  Data_Atendimento DATE,  
+  Descritivo_Resultado VARCHAR(255),  
+  Resultado VARCHAR(50),  
+  Horario_Atendimento TIME
+);
 
-CREATE TABLE Laboratório 
+CREATE TABLE Laboratorio 
 ( 
- Nome INT,  
- Telefone INT,  
- Endereço INT,  
- Exames cobertos INT,  
- Data Expiração Contrato INT,  
- Valor cobrado INT,  
-); 
+  Nome VARCHAR(50),  
+  Telefone INT,  
+  Endereco VARCHAR(100),  
+  Exames_Cobertos VARCHAR(255),  
+  Data_Expiracao_Contrato DATE,  
+  Valor_Cobrado FLOAT
+);
 
-CREATE TABLE Internação 
+CREATE TABLE Internacao 
 ( 
- Motivo INT,  
- Exame.Resultado INT,  
- Leito.Sala INT,  
- Solicitação INT,  
-); 
+  Motivo VARCHAR(255),  
+  Resultado_Exame VARCHAR(255),  
+  Sala INT,  
+  Solicitacao BOOLEAN
+);
 
 CREATE TABLE Cirurgia 
 ( 
- Sala INT,  
- Especialidade INT,  
- Andar INT,  
-); 
+  Sala INT,  
+  Especialidade VARCHAR(50),  
+  Andar INT
+);
 
 CREATE TABLE Leito 
 ( 
- Andar INT,  
- ID Leito INT PRIMARY KEY,  
- Sala INT,  
-); 
-
-CREATE TABLE Holding CARE 
-( 
-); 
+  Andar INT,  
+  ID_Leito INT PRIMARY KEY,  
+  Sala INT
+);
 
 CREATE TABLE Hospital 
 ( 
-); 
+);
 
-CREATE TABLE Primeira consulta 
+CREATE TABLE Primeira_Consulta 
 ( 
-); 
+);
 
 CREATE TABLE Retorno 
 ( 
-); 
-
-CREATE TABLE Funcionário1 
-( 
-); 
-
+);
