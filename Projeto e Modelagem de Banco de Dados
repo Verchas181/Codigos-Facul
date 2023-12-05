@@ -1,105 +1,120 @@
 CREATE TABLE Ala 
 ( 
-  Tipo VARCHAR(10),  
-  Nome VARCHAR(50)
-);
-
-CREATE TABLE Pessoa 
-( 
-  Nome VARCHAR(50),  
-  Telefone INT,  
-  Genero VARCHAR(10),  
-  Data_Nascimento DATE,  
-  CPF INT PRIMARY KEY,  
-  Endereco VARCHAR(100)
+  Tipo VARCHAR(25) NOT NULL, 
+  NomeAla VARCHAR(50) PRIMARY KEY
 );
 
 CREATE TABLE Paciente 
 ( 
-  ID INT PRIMARY KEY,  
-  Numero_Carteirinha_SUS INT
+  NomePaciente VARCHAR(50) NOT NULL,  
+  Telefone INT NOT NULL,  
+  Genero VARCHAR(25) NOT NULL,  
+  DataNascimento DATE NOT NULL,  
+  CPF BIGINT NOT NULL,  
+  Endereco VARCHAR(100) NOT NULL,
+  PacienteID INT PRIMARY KEY,  
+  NumeroCarteirinhaSUS INT NOT NULL
 );
 
 CREATE TABLE Funcionario 
 ( 
-  Data_Contratacao DATE
+  NomeFunc VARCHAR(50) NOT NULL,  
+  Telefone INT NOT NULL,  
+  Genero VARCHAR(25) NOT NULL,  
+  DataNascimento DATE NOT NULL,  
+  Endereco VARCHAR(100) NOT NULL,
+  DataContratacao DATE NOT NULL,
+  CRM INT NULL,
+  NomeAla VARCHAR(50),
+
+  CPF BIGINT PRIMARY KEY,  
+  constraint FK_Func FOREIGN KEY (NomeAla) REFERENCES Ala(NomeAla)
 );
 
-CREATE TABLE Medico 
-( 
-  Especialidade VARCHAR(50),  
-  CRM INT PRIMARY KEY
-);
-
-CREATE TABLE Enfermeiro 
-( 
-);
-
-CREATE TABLE Tecnico 
-( 
-  Funcao VARCHAR(15)
+CREATE TABLE Medico
+(
+  CPF BIGINT,
+  CRM BIGINT PRIMARY KEY,
+  
+  constraint FK_Medico FOREIGN KEY (CPF) REFERENCES Funcionario(CPF)
 );
 
 CREATE TABLE Consulta 
 ( 
-  Tipo_Diagnostico VARCHAR(50),  
-  Descricao_Diagnostico VARCHAR(255),  
-  Data_Atendimento DATE,  
-  Horario_Atendimento TIME,  
-  Sala INT
+  IDConsulta INT PRIMARY KEY,
+  Diagnostico VARCHAR(255) NOT NULL,  
+  DataAtendimento DATE NOT NULL,  
+  HorarioAtendimento TIME NOT NULL,  
+  Sala INT NOT NULL,
+  PacienteID INT,
+  CRM INT,
+  NomeAla VARCHAR(50),
+  Retorno BOOLEAN NOT NULL,
+
+  constraint FK_Consulta_ID FOREIGN KEY (PacienteID) REFERENCES Paciente(PacienteID),
+  constraint FK_Consulta_CRM FOREIGN KEY (CRM) REFERENCES Medico(CRM),
+  constraint FK_Consulta_Ala FOREIGN KEY (NomeAla) REFERENCES Ala(NomeAla)
 );
 
 CREATE TABLE Exame 
 ( 
-  Tipo_Resultado VARCHAR(50),  
-  Tipo_Exame VARCHAR(50),  
-  Descricao_Diagnostico VARCHAR(255),  
-  Data_Atendimento DATE,  
-  Descritivo_Resultado VARCHAR(255),  
-  Resultado VARCHAR(50),  
-  Horario_Atendimento TIME
+  IDExame INT PRIMARY KEY,
+  TipoExame VARCHAR(50) NOT NULL,  
+  IDConsulta INT,
+  DataAtendimento DATE NOT NULL,  
+  Resultado VARCHAR(50) NOT NULL,  
+  HorarioAtendimento TIME NOT NULL,
+
+  constraint FK_Exame FOREIGN KEY (IDConsulta) REFERENCES Consulta(IDConsulta)
 );
 
 CREATE TABLE Laboratorio 
 ( 
-  Nome VARCHAR(50),  
-  Telefone INT,  
-  Endereco VARCHAR(100),  
-  Exames_Cobertos VARCHAR(255),  
-  Data_Expiracao_Contrato DATE,  
-  Valor_Cobrado FLOAT
+  LabCNPJ BIGINT PRIMARY KEY,
+  NomeLab VARCHAR(50) NOT NULL,  
+  Telefone INT NOT NULL,  
+  Endereco VARCHAR(100) NOT NULL,  
+  ExamesCobertos VARCHAR(100) NOT NULL,  
+  DataExpiracaoContrato DATE NOT NULL
 );
 
 CREATE TABLE Internacao 
 ( 
-  Motivo VARCHAR(255),  
-  Resultado_Exame VARCHAR(255),  
-  Sala INT,  
-  Solicitacao BOOLEAN
+  Motivo VARCHAR(255) NOT NULL,  
+  IDExame INT PRIMARY KEY,
+  Sala INT NOT NULL,  
+  Solicitacao BOOLEAN NOT NULL,
+  DataAgendamento DATE ,
+  PacienteID INT,
+
+  constraint FK_Internacao_Resultado  FOREIGN KEY (IDExame) REFERENCES Exame(IDExame),
+  constraint FK_Internacao_ID FOREIGN KEY (PacienteID) REFERENCES Paciente(PacienteID)
 );
 
 CREATE TABLE Cirurgia 
 ( 
-  Sala INT,  
-  Especialidade VARCHAR(50),  
-  Andar INT
+  Sala INT NOT NULL,  
+  Especialidade VARCHAR(50) NOT NULL,  
+  Andar INT PRIMARY KEY
 );
 
 CREATE TABLE Leito 
 ( 
-  Andar INT,  
-  ID_Leito INT PRIMARY KEY,  
-  Sala INT
+  Andar INT NOT NULL,  
+  IDLeito INT PRIMARY KEY,  
+  Sala INT NOT NULL,
+  PacienteID INT,
+
+  constraint FK_Leito FOREIGN KEY (PacienteID) REFERENCES Paciente(PacienteID)
 );
 
-CREATE TABLE Hospital 
-( 
-);
+CREATE TABLE Coberto
+(
+  IDCoberto INT PRIMARY KEY,
+  IDExame INT,  
+  LabCNPJ BIGINT,
+  ValorCobrado FLOAT,
 
-CREATE TABLE Primeira_Consulta 
-( 
-);
-
-CREATE TABLE Retorno 
-( 
+  constraint FK_Coberto_CNPJ FOREIGN KEY (LabCNPJ) REFERENCES laboratorio(LabCNPJ),
+  constraint FK_Coberto_Exame FOREIGN KEY (IDExame) REFERENCES Exame(IDExame)
 );
