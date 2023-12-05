@@ -1,0 +1,58 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int capacidade = 5;  
+    int *vetor = malloc(capacidade * sizeof(int));
+
+    if (vetor == NULL) {
+        printf("Erro ao alocar memória.\n");
+        exit(EXIT_FAILURE);
+    }
+
+    int tamanho = 0;
+
+    printf("Digite os inteiros (digite 0 para finalizar):\n");
+
+    int numero;
+    while (1) {
+        scanf("%d", &numero);
+
+        if (numero == 0) {
+            break;  
+        }
+
+        if (tamanho == capacidade) {
+            capacidade *= 2;
+            int *novoVetor = malloc(capacidade * sizeof(int));
+
+            if (novoVetor == NULL) {
+                printf("Erro ao alocar memória.\n");
+                free(vetor);
+                exit(EXIT_FAILURE);
+            }
+
+            // Copia os elementos do vetor existente para o novo vetor
+            for (int i = 0; i < tamanho; i++) {
+                novoVetor[i] = vetor[i];
+            }
+
+            free(vetor);
+
+          
+            vetor = novoVetor;
+        }
+
+        vetor[tamanho++] = numero;
+    }
+
+    printf("Conteúdo do vetor:\n");
+
+    for (int i = 0; i < tamanho; i++) {
+        printf("%d ", vetor[i]);
+    }
+
+    free(vetor);  
+
+    return 0;
+}
