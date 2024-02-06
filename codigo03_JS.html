@@ -1,0 +1,30 @@
+
+<!-- EXERCICIO  -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<!-- podemos adicionar um arquivo como fonte utilizando <script src = 'arquivo_escolhido.js'> <script> -->
+</body>
+<script>
+    var nome = prompt("Digite seu nome completo");
+    window.confirm(`O nome ${nome} está correto??`); 
+    var altura = window.prompt("Digite o valor de sua altura em CM");
+    var peso = window.prompt("Digite o valor do seu peso em KG");
+    var imc = peso / (altura * altura);
+    console.log(`Seu nome é ${nome} e seu IMC é igual a ${imc}`);
+    window.alert(`Seu nome é ${nome} e seu IMC é igual a ${imc}`);
+    
+    //OBS: os operadores ++i,i++,i-- e --i += *= .... existem tbm! só para relembrar...
+    //OBS2: em erros de operação podem aparecer NaN, que é Not a Number, no caso de uma operação de numero e de string/char por exemplo
+    //OBS3: para verificar o tipo de cada variável podemos utilizar:  console.log(typeof nomevariavel);  Number.parseInt/parseFloat  ou Number(nomevariavel)
+
+
+</script>
+
+</html>
