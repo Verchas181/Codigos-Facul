@@ -69,24 +69,26 @@ int main(){
     };
 
   
-    typedef date data;
+    typedef struct date data;
 
     // podemos fazer tambem typedef struct{..........} data; ,  uma struct anonima que é renomeada para 'data' depois
 
        struct a{
-      char nome[100];
+      char nome[7];
       int idade;
       char conceito;
       data quando;
     };
   
     typedef struct a aluno;
-    aluno a1.nome = "jhonny";
-    aluno a1.idade = 20;
-    aluno a1.conceito = 'B';
-    aluno a1.quando.dia = 02;
-    aluno a1.quando.mes = 04;
-    aluno a1.quando.ano = 03;
+
+    aluno a1;
+    strcpy("jhonny", a1.nome);
+    a1.idade = 20;
+    a1.conceito = 'B';
+    a1.quando.dia = 02;
+    a1.quando.mes = 04;
+    a1.quando.ano = 03;
 
 
     // if, while, for, else if (), else
