@@ -1,0 +1,47 @@
+<!--- mais conteúdo de HTML-->
+<!-- formatação de texto-->
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        p{
+             text-align: justify;
+             text-indent: 50px;
+             text-emphasis-color: rgb(58, 3, 3);
+        }
+    </style>
+</head>
+<body>
+    <!-- podemos usar a tag <b><b/> de Bold para deixar as coisas em negrito e <i>.... para italico, <em>.... para enfatizar e -->
+    <!-- a tag <span>... ela é utilizada para formatar pequenos pedaços de texto, por exemplo -->
+    <!-- tag <sup>... para palavras ou simbulos em 'elevado'-->
+   
+    <header>
+    <h1 style="text-align: center;"> 
+    Título <span style="text-decoration: underline;"> extensivamente </span> pequeno
+    </h1>
+    <!-- dentro do style da tag span há diversos argumentos que podem ser utilizados para formatar o texto -->
+    </header>
+    <p>
+        <em> Lorem ipsum, dolor sit amet consectetur adipisicing elit.</em> Delectus dolorem perferendis eum similique inventore perspiciatis consequuntur sequi porro, tempore tenetur quam molestias esse ducimus illum adipisci, soluta, saepe culpa facere.
+    </p>
+    
+     <!-- para adicionar um código na tela podemos colocar todo o texto entre as tags <pre><code> .... assim todos os espaços sao preservados-->
+    <pre>
+    <code>
+    #include <stdio.h>
+    #include <stdlib.h>
+        int main(){
+            int x = 300;
+            int* p  = &x;
+            printf("O valor %d está no endereço %p da variável x.",*p,p);
+            return 0;
+        }
+    </code>
+    </pre>
+</body>
+</html>
