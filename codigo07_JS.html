@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //aprendendo Objetos
+    const obj ={
+        nome: "Henrique",
+        idade: 20,
+        sexo: 'M'
+    };
+    //podemos acessar as informacoes com obj.nome por exemplo
+    function criador_de_pessoas(nome,idade,sexo){
+        return {
+            nome:nome,
+            idade:idade,
+            sexo:sexo,
+            fala(){
+                console.log(`Olá, meu nome é ${this.nome}`)
+            }
+        };
+    }
+
+        var pessoa01 = criador_de_pessoas("Felipe",7,'M');
+        var pessoa02 = criador_de_pessoas("Giulia",19,'F');
+        pessoa02.fala()
+
+</script>
+</html>
