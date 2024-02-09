@@ -1,0 +1,59 @@
+//colocar imagens no HTML e Dias,Meses,Anos
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- podemos colocar o CSS de outra maneira, exemplo abaixo -->
+    <!-- <link rel="stylesheet" type="text/css" href="EndereçoDoArquivo"/>   -->
+</head>
+<body>
+    <!--Quando for salvar uma imagem, utilizar o GIMP para salvar em modelo web para ocupar menos espaço, com custo de qualidade-->
+    <!-- se precisar alterar o tamanho de uma imagem UTILIZE O GIMP!! -->
+
+    <figure>
+    <img src = "./imagens/doguinho_pançudo.png"/>
+    <!-- podemos criar um id ou classe para personalizar as imagens com o CSS -->
+    <figcaption style="text-align: center;">
+        <h3>
+            doguinho pançudo
+        </h3>
+        <p>
+            cachorrinho guloso pós refeição!
+        </p>
+    </figcaption>
+    </figure>
+
+    <script>
+        const data = new Date(2024,3,2,23,59,59); // 2 de abril de 2024 as 23:59:59; Obs: o mes começa com 0 em janeiro
+        const data2 = new Date('2024-04-02 23:59:59');// 2 de abril de 2024 as 23:59:59
+        console.log(data.toString());
+         // temos também .getDate() .getMonth() .getFullYear() .getHours() .getMinutes .getSeconds .getDay() também!!
+        
+         function adiciona_zero(n){
+            if (n < 10){
+                return `0${n}`
+            }
+         }
+         
+         function date(){
+            const d = new Date();
+            const dia = adiciona_zero(d.getDate());
+            const mes = adiciona_zero(d.getMonth());
+            const ano = adiciona_zero(d.getFullYear());
+            const hora = adiciona_zero(d.getHours());
+            const min = adiciona_zero(d.getMinutes());
+            const seg = adiciona_zero(d.getSeconds());
+
+            return `São ${hora} horas, ${min} minutos e ${seg} do dia ${dia}/${mes}/${ano}.`
+
+         }
+         
+
+    </script>
+
+
+</body>
+</html>
