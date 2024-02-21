@@ -10,7 +10,7 @@
 # exemplos de porta: #
 # todo servidor web usa a porta 80 #
 # todo servidor telnet usa 23 (não trabalha com criptografia) #
-# email é 53 #
+# email é porta 53 #
 # /////////////////////////////////////////////////////////////////// #
 
 import socket
