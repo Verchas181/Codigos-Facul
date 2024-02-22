@@ -13,7 +13,7 @@
 
 // A lista encadeada fundamentalmente é um ponteiro que aponta para uma sequencia de nós
 
-/////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 
 //representacao
 
@@ -39,7 +39,7 @@ resultado
 
 head->30->10->15->NULL 
 */
-////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 // interface de um TAD Lista Encadeada
 
 #ifndef LINKED_LIST_H
@@ -66,7 +66,7 @@ void list_print(LL* list);
 
 // não expor o nó dentro do arquivo.h !!! por conta da segurança
 
-///////////////
+/////////////////////////////////////////////////////////////////////////
 
 // definindo a estrutura
 
@@ -77,7 +77,7 @@ Node* head;
 
 // a cabeça é apenas um referencial, um ponteiro
 
-////////////
+/////////////////////////////////////////////////////////////////////////
 
 #ifndef LL_H
 #define LL_H
@@ -98,33 +98,34 @@ void list_print(){
 Node* cur = list->head;
 
 while(cur != NULL){
-element_print(cur->element)
-printf(" ");
-cur = cur->next;
+  element_print(cur->element)
+  printf(" ");
+  cur = cur->next;
 if(cur != NULL){
-printf("->");
+  printf("->");
+}
 }
 printf("\n");
 }
 
 void list_destroy(LL* list){
 
-Node* trash = list->head;
-while(trash != NULL){
+  Node* trash = list->head;
+  while(trash != NULL){
 
-list->head = trash->next;
-free(trash);
-trash= trash->head;
+    list->head = trash->next;
+    free(trash);
+    trash= trash->head;
 }
-free(list);
+  free(list);
 }
 
 
 void list_insertBegin(LL* list, Element e){
-Node* newNode = malloc(sizeof(Node));
-newNode->element = e;
-newNode->next = list->head;
-list->head = newNode;
+  Node* newNode = malloc(sizeof(Node));
+  newNode->element = e;
+  newNode->next = list->head;
+  list->head = newNode;
 }
 
 
@@ -135,7 +136,7 @@ void list_insertEnd(){
 void list_insertPos(){
 
 if(list->head == NULL || pos<0){
-list_insertFirst(list,element)
+  list_insertFirst(list,element)
 }   else{
     Node* cur = list->head;
     int i=0;
@@ -152,7 +153,7 @@ list_insertFirst(list,element)
 }
 
 
-///////////////////// 
+//////////////////////////////////////////////qq
 //main.c
 
 #include "linked_list.h"
