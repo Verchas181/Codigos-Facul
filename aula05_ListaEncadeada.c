@@ -73,6 +73,7 @@ void list_print(LL* list);
 
 struct LinkedList{
 Node* head;
+int size;
 };
 
 // a cabeça é apenas um referencial, um ponteiro
@@ -91,6 +92,7 @@ typedef struct LinkedList LL;
 LL* list_create(){
 LL* list = malloc(sizeof(LL));
 list->head = NULL;
+list->size = 0;
 return list;
 }
 
@@ -133,7 +135,7 @@ void list_insertBegin(LL* list, Element e){
 void list_insertEnd(){
 }
 
-void list_insertPos(){
+void list_insertPos(LL* list, int posicao, Element element){
 
 if(list->head == NULL || pos<0){
   list_insertFirst(list,element)
@@ -149,6 +151,7 @@ if(list->head == NULL || pos<0){
     newNode->next = cur->next;
     cur->next = newNode;
     }
+  list->size++;
      
 }
 
