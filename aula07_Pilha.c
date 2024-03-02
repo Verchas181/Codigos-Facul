@@ -133,7 +133,7 @@ void stack_print(Stack* stack){
 
 //////////////////////////////////////////////////////
 
-// implementacao baseada em lista
+// implementacao baseada em lista encadeada
 
 #include "stack.h"
 
@@ -172,22 +172,57 @@ void stack_destroy(Stack* stack);
   while( cur != NULL){
 
 
+bool stack_push(Stack* stack, Element e) {
+  Node* new_node = malloc(sizeof(Node));
+  if (new_node == NULL) {
+    return false; // Falha na alocação de memória
+  }
+  new_node->element = e;
+  new_node->next = stack->top;
+  stack->top = new_node;
+  stack->size++;
+  return true;
+}
 
+Element stack_pop(Stack* stack) {
+  if (stack_empty(stack)) {
+    return ELEMENT_NULL;
+  }
+  Node* popped_node = stack->top;
+  Element popped_element = popped_node->element;
+  stack->top = popped_node->next;
+  free(popped_node);
+  stack->size--;
+  return popped_element;
+}
 
+Element stack_peek(Stack* stack) {
+  if (stack_empty(stack)) {
+    return ELEMENT_NULL;
+  }
+  return stack->top->element;
+}
 
+int stack_size(Stack* stack) {
+  return stack->size;
+}
 
-bool stack_push(Stack* stack, Element e);
-Element stack_pop(Stack* stack);
-Element stack_peek(Stack* stack);
-bool stack_size(Stack* stack);
-bool stack_empty(Stack* stack);
-bool stack_full(Stack* stack);
-void stack_print(Stack* stack);
+bool stack_empty(Stack* stack) {
+  return stack->top == NULL;
+}
 
+bool stack_full(Stack* stack) {
+  // Lista encadeada não tem um limite de capacidade, então não precisa verificar se está cheia
+  return false;
+}
 
-
-
-
-
-
+void stack_print(Stack* stack) {
+  Node* current = stack->top;
+  while (current != NULL) {
+    element_print(current->element);
+    printf(" ");
+    current = current->next;
+  }
+  printf("<-top \n");
+}
 
