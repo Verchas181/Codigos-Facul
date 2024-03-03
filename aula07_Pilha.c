@@ -167,9 +167,18 @@ Stack* stack_create(){
 }
 
 
-void stack_destroy(Stack* stack);
-  Node* cur = stack->top;
-  while( cur != NULL){
+void stack_destroy(Stack* stack) {
+    Node* cur = stack->top; 
+
+    while (cur != NULL) { 
+        free(cur->element);      
+        free(cur);               
+        cur = cur->next;             
+    }
+
+    free(stack); 
+}
+
 
 
 bool stack_push(Stack* stack, Element e) {
