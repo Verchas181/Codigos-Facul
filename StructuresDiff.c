@@ -283,7 +283,7 @@ Element stack_pop(Stack* stack) {
 
 //////////////////////////////////////////////////////////////////////////
 
-// FILA
+// FILA BASEADA EM LISTA ENCADEADA (A FILA BASEADA EM LISTA ECADEADA É MELHOR QUE A FILA BASEADA EM ARRAY!!!)
 
 #include "queue.h"
 
