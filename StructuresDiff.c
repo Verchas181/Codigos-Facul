@@ -281,6 +281,92 @@ Element stack_pop(Stack* stack) {
   return popped_element;
 }
 
+//////////////////////////////////////////////////////////////////////////
+
+// FILA
+
+#include "queue.h"
+
+typedef struct Node {
+  Element element;
+  struct Node* next;
+ } Node;
+
+struct Queue {
+  Node* front;
+  Node* back;
+  int size;
+ };
+
+Queue* queue_create() {
+ Queue* queue = malloc(sizeof(Queue));
+
+ queue->front = NULL;
+ queue->back = NULL;
+ queue->size = 0;
+
+return queue;
+}
+
+void queue_destroy(Queue* queue) {
+ while (!queue_isEmpty(queue)) {
+ queue_remove(queue);
+}
+ free(queue);
+}
+
+void queue_insert(Queue* queue, Element element){
+   Node* newNode = malloc(sizeof(Node));
+   newNode->element = element
+   newNode->next = NULL;
+   
+   if (queue_isEmpty(queue){
+     queue->front = newNode;
+     }else{
+    queue->back->next = newNode;  
+ }
+   queue->back = newNode;
+   queue->size++;
+ }
+
+Element queue_remove(Queue* queue){
+  if (queue_isEmpty(queue){
+    return ELEMENT_NULL; 
+ }else{
+    Node* trash = queue->front;
+    Element eTrash = trash->element;
+    queue->front = queue->front->next;
+    free(trash);
+    queue->size--;
+  return eTrash;
+ }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //////////////////////////////////////////////////////////////////////////
 
