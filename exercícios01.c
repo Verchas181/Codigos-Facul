@@ -290,6 +290,27 @@ aritmética, contendo parênteses, colchetes e chaves, e verifica se a expressã
 A função deve ter a seguinte assinatura: bool isBalanced(char* expr). 
 Por exemplo, a expressão [2 * (3 + 4)] está corretamente balanceada, enquanto a expressão [2 * (3 + 4) não está.*/
 
+bool is_balanced(char *s) {
+    Stack* stack = stack_create();
+
+    for (int i = 0; s[i] != '\0'; i++) {
+        if (s[i] == '(' || s[i] == '[') {
+        stack_push(stack, x);
+            } else if (s[i] == ')' || s[i] == ']') {
+            if (stack_isEmpty(stack)) {
+                stack_destroy(stack);
+                return false;
+                }
+            stack_pop(stack);
+             }
+        }
+
+        bool balanced = stack_isEmpty(stack);
+        stack_destroy(stack);
+
+        return balanced;
+}
+
 
 
 
