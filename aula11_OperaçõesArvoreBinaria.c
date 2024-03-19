@@ -62,8 +62,8 @@ void bst_insertIterative(BST* bst, Element key) {
     Node* cur = bst->root;
 
     while (cur != NULL) { // non-empty tree, find the parent leaf
-    if (cur->key == key) {
-            return;
+        if (cur->key == key) {
+                return;
 } else if (key < cur->key) {
     parent = cur;
     cur = cur->left;
