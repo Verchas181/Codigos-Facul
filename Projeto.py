@@ -31,7 +31,7 @@ while True:
     client_connection, client_address = server_socket.accept()
 
     #pega a solicitação do cliente
-    request = client_connection.recv(1024).decode()
+    request = client_connection.recv(8192).decode()
     
 
     if request:
@@ -86,9 +86,9 @@ while True:
 
 
             #envia a resposta HTTP
-            client_connection.sendall(response.encode())
+client_connection.sendall(response.encode())
 
-            client_connection.close()
+client_connection.close()
 
 
 server_socket.close()
