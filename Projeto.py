@@ -31,7 +31,7 @@ while True:
     client_connection, client_address = server_socket.accept()
 
     #pega a solicitação do cliente
-    request = client_connection.recv(8192).decode()
+    request = client_connection.recv(8192).decode('latin-1')
     
 
     if request:
@@ -43,8 +43,8 @@ while True:
         headers = request.split("\n")  #analisa a solicitação HTTP
         print(headers)
         filename = headers[0].split()[1]  # nome do arquivo
+        
         solicitacao = headers[0].split()[0] #tipo de solicitacao GET, PUT ....
-
 
         if solicitacao == "PUT":
             conteudo = headers[5]
@@ -74,6 +74,7 @@ while True:
                 fin = open("htdocs" + filename) #abrir o arquivo e
             
                 content = fin.read() #leio o conteúdo do arquivo 
+                
             
                 fin.close() #fecho o arquivo
             
