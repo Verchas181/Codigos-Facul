@@ -46,7 +46,7 @@ while True:
         
         solicitacao = headers[0].split()[0] #tipo de solicitacao GET, PUT ....
 
-        if solicitacao == "PUT":
+        if solicitacao.startswith("PUT /"):
             conteudo = headers[5]
             try:
 
@@ -64,7 +64,7 @@ while True:
 
 
 
-        if solicitacao == "GET":
+        if solicitacao.startswith("GET /"):
             if filename == "/": #verifica qual arquivo está sendo solicitado
                 filename = "/index.html" 
 
