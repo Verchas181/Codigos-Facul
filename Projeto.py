@@ -72,29 +72,33 @@ while True:
             if filename == "/": #verifica qual arquivo está sendo solicitado
                 filename = "/index.html" 
 
-            #try e except para tratamento de erro quando um arquivo solicitado não existir
+          
             try:
-            
-                fin = open("htdocs" + filename, "rb") #abrir o arquivo 
-                
-            
-                content = fin.read() #leio o conteúdo do arquivo 
+                if filename.split(".")[-1] in ["jpg", "jpeg", "png", "gif"]:
+                    fin = open("htdocs" + filename, "rb") # Abrir o arquivo binário para imagem
+                    content = fin.read()
+                    fin.close() 
 
-               
-                
-            
-                fin.close() #fecho o arquivo
-            
-                response = "HTTP/1.1 200 OK\n\n" + content #envia a resposta + arquivo
+        
+                    response = "HTTP/1.1 200 OK\n"
+                    response += "Content-Type: image/" + filename.split(".")[-1] + "\n\n"
+                    response = response.encode() + content 
+                    client_connection.sendall(response)
+                else:
+                    fin = open("htdocs" + filename, "r") # Abrir o arquivo texto
+                    content = fin.read() 
+                    fin.close() 
 
-
+        
+                    response = "HTTP/1.1 200 OK\n\n" + content
+                    client_connection.sendall(response.encode())
             except FileNotFoundError:
-                #caso o arquivo solicitado não exista no servidor, gera uma resposta de erro
+    
                 response = "HTTP/1.1 404 NOT FOUND\n\n<h1>ERROR 404!<br>File Not Found!</h1>"
 
 
             #envia a resposta HTTP
-        client_connection.sendall(response.encode())
+        
 
         client_connection.close()
 
