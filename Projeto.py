@@ -17,7 +17,7 @@ server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 server_socket.bind((SERVER_HOST, SERVER_PORT))
 
 #coloca o socket para escutar por conexões
-server_socket.listen(1)
+server_socket.listen(6)
 
 #mensagem inicial do servidor
 print("Servidor em execução...")
@@ -32,14 +32,15 @@ while True:
     client_connection, client_address = server_socket.accept()
 
     #pega a solicitação do cliente
+    
     request = client_connection.recv(8192).decode()
     
 
     if request:
 
         #imprime a solicitação do cliente
-        
-        headers = request.split("\n")  #analisa a solicitação HTTP
+
+        headers = request.split("\r\n") 
         print(headers)
         filename = headers[0].split()[1]  # nome do arquivo
         solicitacao = headers[0].split()[0] #tipo de solicitacao GET, PUT ....
@@ -50,7 +51,7 @@ while True:
         
 
         if solicitacao == "PUT":
-            conteudo = headers[5]
+            conteudo = headers[-1]
             try:
                 if filename == "/":
                     f = open("htdocs/padrao.txt","w")
@@ -61,9 +62,11 @@ while True:
                 f.close()
 
                 response = "HTTP/1.1 200 OK \n\n"
+                client_connection.sendall(response.encode())
             except:
                 print("Erro ao escrever/criar o arquivo")
                 response = "HTTP/1.1 500 Internal Server Error\n\n"
+                client_connection.sendall(response.encode())
 
 
 
