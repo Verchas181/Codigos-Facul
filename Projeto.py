@@ -80,7 +80,7 @@ while True:
             
                 content = fin.read() #leio o conteúdo do arquivo 
 
-                print(content)
+               
                 
             
                 fin.close() #fecho o arquivo
