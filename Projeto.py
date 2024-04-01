@@ -75,7 +75,7 @@ while True:
             #try e except para tratamento de erro quando um arquivo solicitado não existir
             try:
             
-                fin = open("htdocs" + filename) #abrir o arquivo 
+                fin = open("htdocs" + filename, "rb") #abrir o arquivo 
                 
             
                 content = fin.read() #leio o conteúdo do arquivo 
