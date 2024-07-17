@@ -16,6 +16,9 @@
 // Já a parte de arquitetura será a montagem do circuito em sí.
 // Arquiteturas podem atuar de forma hierárquica, já que uma arquitetura pode chamar outra arquitetura.
 
+ // Uma entity pode ter mais de uma architecture associada a ela, mas durante a simulação apenas uma delas estará ativa
+ // A decisão será feita pelo simulador baseada numa declaração no final do arquivo, chamada configuration.
+
 // Podemos usar diferentes softwares para simulação de projetos, temos o ModelSim, GTKWave, Quartus
 ------------------------------------------------------------------------------------------------------------
   ---Entity---
@@ -58,7 +61,68 @@
 
       end Circuito;
     
+------------------------------------------------------------------------------------------------------------
 
+---Comparador de 1 Bit---
+   
+   library ieee;
+use ieee.std_logic_1164.all;
+entity eq1 is
+   port(
+      i0, i1: in std_logic;
+      eq: out std_logic
+   );
+end eq1;
+
+architecture sop_arch of eq1 is
+   signal p0, p1: std_logic;
+begin
+   
+   eq <= p0 or p1;
+   
+   p0 <= (not i0) and (not i1);
+   p1 <= i0 and i1;
+end sop_arch;
+
+------------------------------------------------------------------------------------------------------------
+
+ ---Testbench do Comparador de 1Bit---
+
+ library ieee;
+use ieee.std_logic_1164.all;
+entity eq1_testbench is
+end eq1_testbench;
+
+architecture tb_arch of eq1_testbench is
+   signal test_in0, test_in1: std_logic;
+   signal test_out: std_logic;
+begin
+   
+   uut: entity work.eq1(sop_arch)
+      port map(i0=>test_in0, i1=>test_in1, eq=>test_out);
+   
+   process
+   begin
+      
+      test_in0 <= '0';
+      test_in1 <= '0';
+      wait for 200 ns;
+
+      test_in0 <= '0';
+      test_in1 <= '1';
+      wait for 200 ns;
+      
+      test_in0 <= '1';
+      test_in1 <= '0';
+      wait for 200 ns;
+      
+      test_in0 <= '1';
+      test_in1 <= '1';
+      wait for 200 ns;
+      wait;
+end process;
+end tb_arch;
+   
     
   
 
