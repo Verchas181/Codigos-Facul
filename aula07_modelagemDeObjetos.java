@@ -70,7 +70,7 @@ public class Biblioteca {
     private ArrayList<Livro> acervo;
 
     public Biblioteca() {
-        this.acervo = new ArrayList<>();
+        this.acervo = new ArrayList<Livro>();
     }
 
     public void adicionaLivro(Livro livro) {
@@ -174,35 +174,82 @@ private static final int[] MESES_COM_30_DIAS = {4, 6, 9, 11};
         
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Retangulos
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   
+---retangulo.java---
+  
+package retangulo;
+
+import java.util.ArrayList;
+
+public class Retangulo {
+
+    private ArrayList<Float> centro;
+    private float altura;
+    private float largura;
+
+    public Retangulo(float altura, float largura) {
+        if (altura < 0 || largura < 0) {
+            throw new IllegalArgumentException("Distâncias não podem ser negativas...");
+        }
+        this.altura = altura;
+        this.largura = largura;
+
+        this.centro = new ArrayList<>();
+        this.centro.add(largura / 2);
+        this.centro.add(altura / 2);
+    }
+
+    public float area() {
+        return this.altura * this.largura;
+    }
+
+    public float perimetro() {
+        return 2 * (this.altura + this.largura);
+    }
+
+    public boolean pontoDentro(ArrayList<Float> ponto) {
+        if (ponto.get(0) < this.centro.get(0) + this.largura / 2 &&
+            ponto.get(0) > this.centro.get(0) - this.largura / 2 &&
+            ponto.get(1) < this.centro.get(1) + this.altura / 2 &&
+            ponto.get(1) > this.centro.get(1) - this.altura / 2) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean contemRetangulo(Retangulo r) {
+        if ((this.centro.get(0) + this.largura / 2 > r.centro.get(0) + r.largura / 2) &&
+            (this.centro.get(0) - this.largura / 2 < r.centro.get(0) - r.largura / 2) &&
+            (this.centro.get(1) + this.altura / 2 > r.centro.get(1) + r.altura / 2) &&
+            (this.centro.get(1) - this.altura / 2 < r.centro.get(1) - r.altura / 2)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean interseciona(Retangulo b) {
+        boolean aEsquerdaDeB = this.centro.get(0) + this.largura / 2 < b.centro.get(0) - b.largura / 2;
+        boolean aDireitaDeB = this.centro.get(0) - this.largura / 2 > b.centro.get(0) + b.largura / 2;
+        boolean aAbaixoDeB = this.centro.get(1) + this.altura / 2 < b.centro.get(1) - b.altura / 2;
+        boolean aAcimaDeB = this.centro.get(1) - this.altura / 2 > b.centro.get(1) + b.altura / 2;
+
+        return !aEsquerdaDeB && !aDireitaDeB && !aAcimaDeB && !aAbaixoDeB;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
