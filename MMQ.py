@@ -18,7 +18,6 @@ def OLSfit(x, y, dy=None):
     return([a, da, b, db])
 
 
-------------------------------------------------------------------------------------------
 df = pd.DataFrame()
 
 x = np.array([0.808, 0.883, 1.001, 1.094, 1.195, 1.297, 1.4, 1.5, 1.55])
@@ -31,8 +30,6 @@ df['dx'] = dx
 df['y'] = y
 df['dy'] = dy
 
-------------------------------------------------------------------------------------------
-
 bestfit = OLSfit(x,y,dy)
 print(bestfit)
 a = bestfit[0]
@@ -41,9 +38,6 @@ b = bestfit[2]
 # A linha de melhor ajuste
 xrange = np.arange(0.9*min(x),1.1*max(x),(1.1*max(x)-min(x))/100)
 yfit = a*xrange + b
-
-
-------------------------------------------------------------------------------------------
 
 plt.errorbar(x,y,yerr=dy,xerr=dx,fmt='o')
 plt.xlabel('x')
