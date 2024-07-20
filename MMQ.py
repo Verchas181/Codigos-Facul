@@ -25,25 +25,20 @@ dx = np.array([0.001, 0.001, 0.001, 0.001, 0.001, 0.001, 0.001, 0.001, 0.001])
 y = np.array([0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8])
 dy = np.array([0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05])
 
-df['x'] = x
-df['dx'] = dx
-df['y'] = y
-df['dy'] = dy
 
 bestfit = OLSfit(x,y,dy)
 print(bestfit)
 a = bestfit[0]
 b = bestfit[2]
 
-# A linha de melhor ajuste
-xrange = np.arange(0.9*min(x),1.1*max(x),(1.1*max(x)-min(x))/100)
-yfit = a*xrange + b
+xrange = np.arange(0.9 * min(valores_x), 1.1 * max(valores_x), (1.1 * max(valores_x) - min(valores_x)) / 100)
+yfit = a * xrange + b
 
-plt.errorbar(x,y,yerr=dy,xerr=dx,fmt='o')
+plt.errorbar(valores_x, valores_y, yerr=erro_y, xerr=erro_x, fmt='o')
 plt.xlabel('x')
 plt.ylabel('y')
 
-plt.plot(xrange,yfit,lw=3,color='red')
+plt.plot(xrange, yfit, lw=3, color='red')
 plt.grid()
 plt.title('y vs. x com a linha de melhor ajuste')
 plt.show()
