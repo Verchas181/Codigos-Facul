@@ -60,6 +60,9 @@ com todos esses aspectos, os quais possuem requisitos bastante díspares.
 
    - private // A classe, o atributo ou o método é acessível exclusivamente pela classe em que foi definido.
 
+ ********* Java permite a definição de classes internas, ou inner classes, que são classes definidas dentro de outras classes. 
+ // Nesse caso, é possível aplicar o modificador private à classe interna, o que restringe o acesso a ela apenas pela classe externa
+
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   // Já em quesito de métodos devemos ter sempre os getters e setters, que serão funções capazes de obter e modificar os valores de cada propriedade do objeto:
