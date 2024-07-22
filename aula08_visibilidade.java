@@ -52,16 +52,29 @@ com todos esses aspectos, os quais possuem requisitos bastante díspares.
 
   // Para esta criação de interface temos os seguinte operadores:
 
-   - default // A classe, o atributo ou o método é acessível apenas pelas classes do mesmo pacote. Esse é o modificador aplicado implicitamente quando nenhum modificador é especificado.
+   (~) default // A classe, o atributo ou o método é acessível apenas pelas classes do mesmo pacote. Esse é o modificador aplicado implicitamente quando nenhum modificador é especificado.
 
-   - public // A classe, o atributo ou o método é acessível por qualquer classe, de qualquer pacote.
+   (+) public // A classe, o atributo ou o método é acessível por qualquer classe, de qualquer pacote.
 
- - protected // A classe, o atributo ou o método é acessível apenas pela classe em que foi definido e por suas subclasses. Esse modificador é relevante apenas quando se fala de herança. 
+   (#) protected // A classe, o atributo ou o método é acessível apenas pela classe em que foi definido e por suas subclasses. Esse modificador é relevante apenas quando se fala de herança. 
 
-   - private // A classe, o atributo ou o método é acessível exclusivamente pela classe em que foi definido.
+   (-) private // A classe, o atributo ou o método é acessível exclusivamente pela classe em que foi definido.
+
 
  ********* Java permite a definição de classes internas, ou inner classes, que são classes definidas dentro de outras classes. 
  // Nesse caso, é possível aplicar o modificador private à classe interna, o que restringe o acesso a ela apenas pela classe externa
+
+ // exemplo
+
+ 
+ - nome;
+- anoNascimento;
+- notas: double[]
++ Estudante(nome: String,
+anoNascimento: int, notas: float[]){}
++ getIdade();
+- calcularMedia();
+
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
