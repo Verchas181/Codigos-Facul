@@ -122,6 +122,66 @@ begin
       wait;
 end process;
 end tb_arch;
+
+------------------------------------------------------------------------------------------------------------
+---Exemplo de um MUX (n-1 = 3)---
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.NUMERIC_STD.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+entity mux8x1 is
+  port(
+
+    a : in STD_LOGIC_VECTOR (7 downto 0);
+    d : in STD_LOGIC ;
+    Y : out STD_LOGIC
+   
+   );
+ end mux8x1;
+
+ architecture circuito of mux8x1 is
+  process(a,d,Y)
+   begin
+    case a is 
+      when "000" =>
+        Y <= d;
+      when "001" =>
+        Y <= 0;
+      when "010" =>
+        Y <= d;
+      when "011" =>
+        Y <= 0;
+     when "100" =>
+        Y <= 1;
+     when "101" =>
+        Y <= 0;
+     when "110" =>
+        Y <= not d;
+     when "111" =>
+        Y <= D;
+   end case;
+    end process;
+     end circuito;
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
    
     
   
