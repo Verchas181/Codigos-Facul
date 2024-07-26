@@ -166,7 +166,48 @@ entity mux8x1 is
      end circuito;
    
 
+------------------------------------------------------------------------------------------------------------
+---Exemplo de uma ULA ---
 
+    library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.NUMERIC_STD.ALL;
+
+entity ULA is
+    Port (
+        A       : in  STD_LOGIC_VECTOR(7 downto 0); -- Operando A
+        B       : in  STD_LOGIC_VECTOR(7 downto 0); -- Operando B
+        Opcode  : in  STD_LOGIC_VECTOR(3 downto 0); -- Código da operação
+        Result  : out STD_LOGIC_VECTOR(7 downto 0); -- Resultado da operação
+        Zero    : out STD_LOGIC                     -- Sinal de zero
+    );
+end ULA;
+
+architecture Behavioral of ULA is
+begin
+    process (A, B, Opcode)
+    begin
+        case Opcode is
+            when "0000" =>   -- Operação de Adição
+                Result <= std_logic_vector(unsigned(A) + unsigned(B));
+            when "0001" =>   -- Operação de Subtração
+                Result <= std_logic_vector(unsigned(A) - unsigned(B));
+            when "0010" =>   -- Operação E Lógico
+                Result <= A and B;
+            when "0011" =>   -- Operação OU Lógico
+                Result <= A or B;
+            when "0100" =>   -- Operação XOR
+                Result <= A xor B;
+            when others =>
+                Result <= (others => '0'); 
+        end case;
+        if Result = "00000000" then
+            Zero <= '1';
+        else
+            Zero <= '0';
+        end if;
+    end process;
+end Behavioral;
 
 
 
