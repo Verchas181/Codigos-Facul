@@ -53,28 +53,19 @@ public class Jogador {
      * 
      * @param nome O nome a ser definido para o jogador.
      */
-    public void setNome(String nome) {
-        this.nome = nome;
+ public void nomeJogadorSet() {
+        if (jogador.getNome() != null) {
+            System.out.printf("O jogador %s já possui nome.\n", jogador.getNome());
+        } else {
+            System.out.println("Bem-vindo!");
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Digite seu nome: ");
+            String nome = scanner.nextLine();
+            jogador.setNome(nome);
+        }
     }
 
-    /**
-     * Obtém a pontuação do jogador.
-     * 
-     * @return A pontuação atual do jogador.
-     */
-    public int getPontuacao() {
-        return pontuacao;
-    }
-
-    /**
-     * Aumenta a pontuação do jogador.
-     * 
-     * @param valor O valor a ser adicionado à pontuação.
-     */
-    public void aumentarPontuacao(int valor) {
-        pontuacao += valor;
-    }
-}
+  
 
 /**
  * Classe que representa o tempo no jogo.
@@ -183,17 +174,7 @@ public class Dragao {
     /**
      * Método para o jogador definir seu nome.
      */
-    public void nomeJogadorSet() {
-        if (jogador.getNome() != null) {
-            System.out.printf("O jogador %s já possui nome.\n", jogador.getNome());
-        } else {
-            System.out.println("Bem-vindo!");
-            Scanner scanner = new Scanner(System.in);
-            System.out.print("Digite seu nome: ");
-            String nome = scanner.nextLine();
-            jogador.setNome(nome);
-        }
-    }
+   
 
     /**
      * Método para dar um nome ao ovo do dragão.
