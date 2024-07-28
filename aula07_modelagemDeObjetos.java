@@ -265,17 +265,47 @@ public class Playlist(){
 }
     public void addMusic(Music x){
         this.queue.add(x)
-      
       }
+
+    public void removeMusic(Music x){
+        this.queue.remove(x);
+    }
+
+}  
+    public String getNome(){
+      return this.nome
+}
+    public void setNome(String nome){
+      this.nome = nome;
+}
+
+public int getSize() {
+        return queue.size();
+  }
+public String toString() {
+        // DEVE-SE UTILIZA O STRING BUILDER já que ele é mais eficiente que o operador '+'
+        StringBuilder sb = new StringBuilder();
+        int i = 1;
+
+        sb.append(this.title);
+       
+        for (Music x : this.queue) {
+            sb.append(i++ + ". ").append(x).append("\n");
+        }
+
+        return sb.toString();
+    }
+
+public Music[] getMusics() {
+      
+        return this.queue.toArray(new Music[0]);
+    }
 }
 
 
 
 
-
-
-
-
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
   
 ---Music.java---
   
@@ -292,20 +322,7 @@ public class Music{
     int tempo; // em segundos
 }
 
-  
-  
----MediaPlayer.java---
-  
-package MediaPlayer;
-
-import java.util.ArrayList; 
-
-public class MediaPlayer{
-
-    
-
-
-  public String converte(){
+public String converte(){
       String retorno;
     
       int total = this.tempo;
@@ -320,6 +337,136 @@ public class MediaPlayer{
 
       
   }
+
+
+public String getTitle() {
+        return this.titulo;
+    }
+
+    public String getArtist() {
+        return this.artista;
+    }
+
+    public Duration getDuration() {
+        return this.tempo.converte();
+    }
+
+    public String getAlbum() {
+        return this.album;
+    }
+
+    public int getYear() {
+        return this.ano;
+    }
+
+    public String toString() {
+        return this.titulo + " - " + this.artista + " (" + this.album + ", " + this.ano + ") " + this.tempo;
+    }
+}
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  
+  
+---MediaPlayer.java---
+  
+package MediaPlayer;
+
+import java.util.ArrayList; 
+
+public class MediaPlayer{
+
+    private ArrayList<Track> queue;
+    private boolean playing;
+    private int volume;
+    private Music currentTrack;
+
+
+    public Player() {
+        this.queue = new ArrayList<>();
+        this.playing = false;
+        this.volume = 50;
+        this.currentTrack = null;
+    }
+
+    public void addTrack(Music x) {
+        this.queue.add(x);
+    }
+
+    public void addPlaylist(Playlist playlist) {
+        for (Music x : playlist.getMusic()) {
+            addTrack(x);
+        }
+    }
+
+    public void removeTrack(Music x) {
+        this.queue.remove(x);
+    }
+     public void play() {
+        if (queue.size() == 0) {
+            throw new IllegalStateException("Nenhuma faixa na playlist");
+        }
+        if (currentTrack == null) {
+            currentTrack = queue.get(0);
+        }
+        playing = true;
+    }
+
+     public void pause() {
+        stop();
+    }
+
+    public void stop() {
+        playing = false;
+    }
+
+    public boolean isPlaying() {
+        return playing;
+    }
+
+     public Track getCurrentTrack() {
+        return currentTrack;
+    }
+
+    public void next() {
+        if (queue.size() == 0) {
+            throw new IllegalStateException("Nenhuma faixa na playlist");
+        }
+        int index = queue.indexOf(currentTrack);
+        index++;
+
+        if (index >= queue.size()) {
+            index = 0;
+            stop();
+        }
+        currentTrack = queue.get(index);
+    }
+
+
+    public void previous() {
+        if (queue.size() == 0) {
+            throw new IllegalStateException("Nenhuma faixa na playlist");
+        }
+        int index = queue.indexOf(currentTrack);
+        index--;
+
+        if (index < 0) {
+            index = 0;
+        }
+        currentTrack = queue.get(index);
+    }
+
+   
+    public void shuffle() {
+        if (queue.size() == 0) {
+            return;
+        }
+        int index = queue.indexOf(currentTrack);
+        ArrayList<Track> remainingQueue = new ArrayList<>(queue.subList(index, queue.size()));
+        Collections.shuffle(remainingQueue);
+        
+        queue.subList(index, queue.size()).clear();
+        queue.addAll(remainingQueue);
+    }
+}
 
   
 
