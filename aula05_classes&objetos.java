@@ -117,19 +117,16 @@ public class IdentidadeObjeto {
         ContaCorrente conta1 = new ContaCorrente("123-x", "Fulano");
         ContaCorrente conta2 = new ContaCorrente("456-x", "Ciclano");
 
-        System.out.println(conta1);
-        System.out.println(conta2);
-
         System.out.println();
 
-        System.out.println(conta1.hashCode());
-        System.out.println(conta2.hashCode());
+        System.out.println(conta1 + " " + "--->" + "" + conta1.hashCode());
+        System.out.println(conta2 + " " + "--->" + "" + conta2.hashCode());
     }
 }
 
 
-// [*] ContaCorrente@1b6d3586
-// [*] ContaCorrente@4554617c
+// [*] ContaCorrente@1b6d3586 ---> 460141958
+// [*] ContaCorrente@4554617c ---> 1163157884
 
 
 
