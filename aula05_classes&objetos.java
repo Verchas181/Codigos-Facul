@@ -76,7 +76,8 @@ class ContaCorrente {
         ContaCorrente c1 = new ContaCorrente("123-x", "Maria");
         ContaCorrente c2 = new ContaCorrente("456-x", "Joao");
 
-      // Quando utilizamos esta atribuição abaixo é como se pegassemos dois ponteiros e apontassemos eles para o MESMO endereço de memória, dessa forma ao alterar o valor de um alteramos o valor de outro.
+      // Quando utilizamos esta atribuição abaixo é como se pegassemos dois ponteiros e apontassemos eles para o MESMO endereço de memória.
+      // Dessa forma ao alterar o valor de um alteramos o valor de outro.
         ContaCorrente c3 = c1;
 
         printContaCorrente(c1);        
@@ -104,9 +105,67 @@ class ContaCorrente {
 
     }
 }
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+--- Identidade de um objeto ---
+
+// Em Java, a identidade de um objeto é representada pelo endereço do início de segmento de memória alocado na memória dinâmica. 
+// Esse valor é retornado pelo método hashCode() da classe Object
+
+public class IdentidadeObjeto {
+    public static void main(String[] args) {
+        ContaCorrente conta1 = new ContaCorrente("123-x", "Fulano");
+        ContaCorrente conta2 = new ContaCorrente("456-x", "Ciclano");
+
+        System.out.println(conta1);
+        System.out.println(conta2);
+
+        System.out.println();
+
+        System.out.println(conta1.hashCode());
+        System.out.println(conta2.hashCode());
+    }
+}
+
+
+// [*] ContaCorrente@1b6d3586
+// [*] ContaCorrente@4554617c
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
 
 
   
