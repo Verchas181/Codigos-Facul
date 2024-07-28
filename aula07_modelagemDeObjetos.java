@@ -241,6 +241,98 @@ public class Retangulo {
 
 
 
+}
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Tocador de musicas e playlists
+
+
+
+
+---Playlist.java---
+  
+package MediaPlayer
+  
+import java.util.ArrayList; 
+
+public class Playlist(){
+    ArrayList<Music> queue;
+    String nome;
+
+    Playlist(String nome){
+      this.queue = new ArrayList<>();
+      this.nome = nome;
+}
+    public void addMusic(Music x){
+        this.queue.add(x)
+      
+      }
+}
+
+
+
+
+
+
+
+
+  
+---Music.java---
+  
+package MediaPlayer
+  
+import java.util.ArrayList; 
+
+public class Music{
+  
+    String titulo;
+    String artista;
+    String album;
+    int ano;
+    int tempo; // em segundos
+}
+
+  
+  
+---MediaPlayer.java---
+  
+package MediaPlayer;
+
+import java.util.ArrayList; 
+
+public class MediaPlayer{
+
+    
+
+
+  public String converte(){
+      String retorno;
+    
+      int total = this.tempo;
+    
+      int horas = total / 3600;
+      int minutos = (total % 3600) / 60;
+      int segundosRestantes = total % 60;
+
+      retorno =  String.format("%02d:%02d:%02d", horas, minutos, segundosRestantes);
+      
+      return retorno;
+
+      
+  }
+
+  
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -253,3 +345,11 @@ public class Retangulo {
 
 
 }
+
+
+
+
+
+  
+
+  
