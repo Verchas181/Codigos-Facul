@@ -207,13 +207,76 @@ class PosGraduando extends Aluno {
 
  // Sobrescrita do método equals
 
+ // Outro método comumente sobrescrito da classe Object é o método equals. 
+ // O método equals é um método que compara dois objetos, retornando true se os objetos são iguais e false caso contrário
+
+ class Aluno {
+ protected String nome;
+ protected int ra;
+ protected int anoNascimento;
+
+ @Override
+ public boolean equals(Object obj) {
+ if (obj instanceof Aluno) {
+ Aluno outro = (Aluno) obj;
+ return this.ra.equals(outro.ra);
+ }
+ return false;
+ }
+}
+
+// @OVERRIDE
+
+// A anotação @Override é uma anotação que indica que um método está sobrescrevendo um método da superclasse. 
+// Trata-se de uma anotação opcional, mas que é recomendada, pois ajuda a evitar erros de digitação e de assinatura de métodos.
 
 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+// Construtores em hierarquia de classes
 
+ // Construtores não são herdados, ou seja, uma classe-filha não herda o construtor da classe-mãe.
+ // O construtor da classe-filha deve necessariamente chamar um construtor da classe-mãe, implícita ou explicitamente.
+ // O processo de instanciar um objeto de uma classe-filha envolve a instanciação de um objeto da classe-mãe.
+ // As chamadas dos construtores segue a ordem top-down (do topo para a base) na hierarquia, em cascata.
 
+class Aluno {
+ protected String nome;
+ protected int ra;
+ protected int anoNascimento;
 
+ public Aluno(String nome, int ra, int anoNascimento) {
+ this.nome = nome;
+ this.ra = ra;
+ this.anoNascimento = anoNascimento;
+ }
+}
 
+class Graduando extends Aluno {
+ private String curso;
+
+ public Graduando(String nome, int ra, int anoNascimento, String curso) {
+ super(nome, ra, anoNascimento);
+ this.curso = curso;
+ }
+}
+
+class PosGraduando extends Aluno {
+ private String programa;
+ private String orientador;
+
+ public PosGraduando(String nome, int ra, int anoNascimento, String programa, String orientador) {
+ super(nome, ra, anoNascimento);
+ this.programa = programa;
+ this.orientador = orientador;
+ }
+}
+
+// Notem que o construtor da classe-topo da hieraquia, Aluno, recebe os parâmetros nome, ra e anoNascimento. 
+// O construtor de uma classe-filha precisa necessariamente chamar o construtor da sua classe-mãe. 
+// Isso precisa ser feito já naprimeira linha do construtor, por meio da palavra-chave super. Caso contrário, ocompilador emitirá um erro de compilação.
+// Devido à dependência de uma classe-filha em relação à classe mãe, a ordem de chamada dos construtores segue a ordem top-down na hierarquia. 
+// Isso significa que, ao instanciar um objeto de uma classe-filha, o construtor da classe-mãe é chamado primeiro, e assim sucessivamente, até chegar ao construtor da classe-filha. 
 
 
 
