@@ -107,10 +107,40 @@ end process;
   // Quando um sinal muda, o bloco de código dentro do process é executado novamente
 
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity mux2to1 is
+    Port (
+        d0 : in STD_LOGIC;
+        d1 : in STD_LOGIC;
+        sel : in STD_LOGIC;
+        y : out STD_LOGIC
+    );
+end mux2to1;
+
+architecture Behavioral of mux2to1 is
+    signal internal_signal : STD_LOGIC;
+begin
+
+    process(d0, d1, sel)
+    begin
+        if (sel = '0') then
+            internal_signal <= d0;
+        else
+            internal_signal <= d1;
+        end if;
+    end process;
+
+    y <= internal_signal;
+
+end Behavioral;
 
 
+    // A parte signal serve para criar circuitos mais complexos em que a saida signal seja a entrada de um circuito em seguida.
 
 
 
