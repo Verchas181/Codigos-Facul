@@ -202,7 +202,46 @@ class PosGraduando extends Aluno {
             + String.format("Orientador: %s\n", orientador);
     }
 }
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Utilizando o StringBuilder
+class Aluno {
+    protected String nome;
+    protected int ra;
+    protected int anoNascimento;
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format("Nome: %s\n", nome));
+        sb.append(String.format("RA: %d\n", ra));  // Note que 'ra' é um inteiro, então use %d
+        sb.append(String.format("Ano de Nascimento: %d\n", anoNascimento));  // 'anoNascimento' é um inteiro
+        return sb.toString();
+    }
+}
+
+class Graduando extends Aluno {
+    private String curso;
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder(super.toString());
+        sb.append(String.format("Curso: %s\n", curso));
+        return sb.toString();
+    }
+}
+
+class PosGraduando extends Aluno {
+    private String programa;
+    private String orientador;
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder(super.toString());
+        sb.append(String.format("Programa: %s\n", programa));
+        sb.append(String.format("Orientador: %s\n", orientador));
+        return sb.toString();
+    }
+}
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
  // Sobrescrita do método equals
