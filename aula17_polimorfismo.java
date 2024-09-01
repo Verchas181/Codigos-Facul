@@ -78,6 +78,47 @@ public class Moto extends Veiculo {
 
 // Pelo princípio da substituição, podemos usar objetos de Carro e Moto onde objetos de Veiculo são esperados.
 
+---------------------------------------------------------------------------
+  //  Polimorfismo em variáveis
+
+  // Aplicado a variáveis, o polimorfismo nos permite armazenar referências a objetos de subtipos em variáveis de supertipos.
+
+  Veiculo carro = new Carro("ABC-1234");
+  Veiculo moto = new Moto("XYZ-9876");
+
+  System.out.println(carro.placa);
+  System.out.println(moto.placa);
+
+  // Arrays Polimorficos: Outra variação de polimorfismo em variáveis consiste na criação de arrays polimórficos
+
+---------------------------------------------------------------------------
+
+  // Polimorfismo em parâmetros
+
+  // Outro uso do princípio da substituição é a passagem de objetos de subtipos como argumentos de métodos que esperam objetos de supertipos
+  // Neste caso, o método imprimePlaca() espera um objeto de Veiculo como argumento. No corpo do método imprimimos o tipo do objeto e a placa do veículo.
+  
+  class Main {
+    static void imprimePlaca(Veiculo veiculo) {
+        System.out.printf("%s: %s\n",
+            veiculo.getClass().getSimpleName(),
+            veiculo.placa);
+    }
+
+    public static void main(String[] args) {
+        Carro carro = new Carro("ABC-1234");
+        Moto moto = new Moto("XYZ-9876");
+
+        imprimePlaca(carro);
+        imprimePlaca(moto);
+    }
+}
+
+    // Polimorfismo VS Sobrecarga. A alternativa para esse problema, seria criar versões sobrecarregadas do método imprimePlaca, tornando um código redundante
+    
+
+
+
 
 
 
