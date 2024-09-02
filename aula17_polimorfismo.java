@@ -117,8 +117,111 @@ public class Moto extends Veiculo {
     // Polimorfismo VS Sobrecarga. A alternativa para esse problema, seria criar versões sobrecarregadas do método imprimePlaca, tornando um código redundante
     
 
+---------------------------------------------------------------------------
+  // Polimorfismo em valores de retorno
+
+  // O princípio da substituição também se aplica a métodos que retornam objetos de subtipos.
+
+  class Main {
+    static Veiculo criaVeiculo(String placa, String categoriaCNH) {
+        if (categoriaCNH.equals("A")) {
+            return new Moto(placa);
+        } else if (categoriaCNH.equals("B")) {
+            return new Carro(placa);
+        }
+        
+        throw new IllegalArgumentException("Categoria CNH inválida");
+    }
+
+    public static void main(String[] args) {
+        Veiculo veiculo = criaVeiculo("ABC-1234", "B");
+
+        imprimePlaca(veiculo);
+    }
+}
+
+---------------------------------------------------------------------------
+
+  // Polimorfismo em tipos genéricos
+
+  //  Um exemplo clássico de uso de tipo genérico é a classe ArrayList, a qual, para ser instanciada, precisa ser parametrizada com um tipo
+
+  import java.util.ArrayList;
+
+class Main {
+    public static void main(String[] args) {
+        ArrayList<Veiculo> veiculos = new ArrayList<>();
+
+        veiculos.add(new Carro("ABC-1234"));
+        veiculos.add(new Moto("XYZ-9876"));
+
+        for (Veiculo veiculo : veiculos) {
+            imprimePlaca(veiculo);
+        }
+    }
+}
 
 
+    // Polimorfismo VS Separação de Tipos:
+
+    // A alternativa para esse problema seria criar uma instância de ArrayList para cada tipo de veículo, por exemplo ArrayList<Carro> e ArrayList<Moto>.
+    //  Claramente deixaria o código mais complicado, pois precisaríamos a todo momento selecionar o ArrayList adequado para cada operação.
+
+
+    // Polimorfismo sem programação genérica:
+
+    // A única maneira de lidar com coleções de objetos era usar a classe Object, que é a superclasse de todas as classes em Java. 
+    // Ou seja, por padrão, um ArrayList era capaz de armazenar instâncias de Object, portanto, pelo princípio de substituição, era possível armazenar instâncias de qualquer classe.
+    // O polimorfismo flexibiliza muito a linguagem.
+
+
+import java.util.ArrayList;
+
+class Main {
+    public static void main(String[] args) {
+        ArrayList veiculos = new ArrayList();
+
+        veiculos.add(new Carro("ABC-1234"));
+        veiculos.add(new Moto("XYZ-9876"));
+
+        for (Object veiculo : veiculos) {
+            imprimePlaca((Veiculo) veiculo);
+        }
+    }
+}
+
+---------------------------------------------------------------------------
+
+  //  Comportamentos polimórficos
+
+  // Comportamento polimórfico, que ocorre quando um método é chamado com um objeto de uma classe filha.
+
+
+  // Polimorfismo de subtipos: uma classe deve ser um subtipo de outra classe. Por exemplo, B é um subtipo de A.
+
+  class A {}
+  class B extends A {}
+
+  // Sobrescrita de métodos: a classe filha deve sobrescrever um método da classe mãe. Por exemplo, B sobrescreve o método m1 de A.
+
+      class A {
+        void m1() {
+            System.out.println("A.m1");
+        }
+    }
+    
+    class B extends A {
+        @Override
+        void m1() {
+            System.out.println("B.m1");
+        }
+    }
+
+  // Chamada polimórfica: um método da classe mãe é chamado com um objeto da classe filha. 
+  // Por exemplo, uma variável do tipo A que contém um objeto de B é usada para chamar o método m1. Consequentemente, a implementação de m1 de B é chamada.
+
+  A a = new B();
+  a.m1();
 
 
 
